@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "publicNavbar.html" %}
+<div class="container">
+	<br/>
+	<br/>
+	<p>Not authorised. Please <a href="{{url_for('login')}}">login</a></p>
+</div>
+{% endblock %}

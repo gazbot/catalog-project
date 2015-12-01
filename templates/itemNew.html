@@ -1,0 +1,53 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "userNavbar.html" %}
+<div class="container">
+    <br />
+    <h3>New Item</h3>
+    <form role="form" class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="name">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" required="true" placeholder="Item name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="description">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="description" name="description" placeholder="Item description" rows=3></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="category">Category</label>
+            <div class="col-sm-10 select">
+                <select class="form-control" id="category" name="category" required="true">             
+                {% for category in categories %}
+                    <option value="{{category.name}}">{{category.name}}</option>
+                {% endfor %}
+                </select>
+                <br />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="file">Picture</label>
+            <div class="input-group">
+                <div style="position:relative;">
+                    <a class='btn btn-primary' href='javascript:;'>
+                        Choose File...
+                        <input type="file" required="true" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file" size="40" '>
+                    </a>
+                    &nbsp;
+                    <span class='label label-info' id="file"></span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-sm-2-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a role="button" class="btn btn-default" href="{{url_for('listItems')}}">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

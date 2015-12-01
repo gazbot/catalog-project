@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "publicNavbar.html" %}
+<div class="container">
+    <h3>Categories</h3>   
+    <ul>
+        {% for category in categories %}
+        <li><a href="{{url_for('showCategory', category_name = category.name)}}">{{category.name}}</a></li>
+        {% endfor %}
+    </ul>    
+</div>
+{% endblock %}
