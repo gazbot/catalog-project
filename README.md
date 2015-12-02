@@ -23,6 +23,9 @@ The following API endpoints support JSON and XML requests
 	/categories/
 	/category/<category_name>/
 
+To receive data in the desired format, you will need to specify the desired
+content type in the http request sent with the 'Content-Type' parameter.
+
 JSON Response example with cURL
 
 	curl -H 'Content-Type: application/json' http://localhost:8000/items/

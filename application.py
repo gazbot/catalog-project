@@ -300,7 +300,7 @@ def listItems():
         itemsXml += "<picture_url>%(picture_url)s</picture_url>\n\t\t"
         itemsXml += "<creation_user_id>%(creation_user_id)s</creation_user_id>"
         itemsXml += "\n\t\t<creation_date>%(creation_date)s</creation_date>"
-        itemsXml += "\n\t</item>"
+        itemsXml += "\n\t</item>\n"
         # iterate through all of the items
         for item in items:
             # bind the item to use in a template
@@ -341,7 +341,7 @@ def listItems():
 
 # Default route, category listing
 @app.route('/')
-@app.route('/categories')
+@app.route('/categories/')
 def showCategories():
     categories = session.query(Category).all()
     # the request specifies JSON as the desired response
