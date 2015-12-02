@@ -50,6 +50,7 @@ class Item(Base):
     __tablename__ = 'item'
     item_id = Column(Integer, primary_key=True)
     category_id = Column(Integer, ForeignKey('category.category_id'))
+    category = relationship(Category)
     name = Column(String(250), nullable=False)
     description = Column(String(250))
     picture_url = Column(String(250))

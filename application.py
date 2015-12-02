@@ -162,12 +162,30 @@ def editItem(item_name):
 
         # current user has passed authorization check
         if request.method == 'POST':
-            # set the item values from the request form
             editItemCategory = session.query(Category).filter_by(
                 name=request.form['category']).one()
+            file = request.files['file']
+                if file is None and not allowedFile(file.filename):
+                    # no image provided or invalid extension
+                    # use original picture_url
+                    picture_path = editItemCategory.picture_url
+                else:
+                    # grab the extension of the file
+                    extension = os.path.splitext(file.filename)[1]
+                    # create a unique filename (UUID/GUID)
+                    f_name = str(uuid.uuid4()) + extension
+                    # save the new filename with the original extension
+                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], f_name))
+                    # path of the picture to use for the template
+                    picture_path = '/' + app.config['UPLOAD_FOLDER'] + f_name
+                    
+            # set the item values from the request form
             item.name = request.form['name']
             item.description = request.form['description']
             item.category_id = editItemCategory.category_id
+            item.picture_url = picture_path
+            session.update(item)
+            session.commit()
             return redirect(url_for('showItem', item_name=item.name))
         else:
             # display the edit item template
@@ -469,6 +487,8 @@ def editCategory(category_name):
             # save the category with the newly provided values
             editedCategory.name = request.form['name']
             editedCategory.description = request.form['description']
+            session.update(editedCategory)
+            session.commit()
             return redirect(url_for('showCategories'))
         else:
             # display the edit category template
