@@ -276,6 +276,7 @@ def newItem():
                         description=request.form['description'],
                         category_id=category.category_id,
                         creation_user=user,
+                        creation_user_id=user_id,
                         picture_url=picture_path)
             # save the newly created item.
             session.add(item)
@@ -445,7 +446,9 @@ def newCategory():
         if request.method == 'POST':
             # create the new category
             newCategory = Category(name=request.form['name'],
-                                   description=request.form['description'])
+                                   description=request.form['description'],
+                                   creation_user=user,
+                                   creation_user_id=user_id)
             session.add(newCategory)
             session.commit()
             return redirect(url_for('showCategories'))
