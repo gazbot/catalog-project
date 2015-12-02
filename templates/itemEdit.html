@@ -4,7 +4,7 @@
 <div class="container">
     <br />
     <h3>Edit Item</h3>
-    <form class="form-horizontal" action="#" method="post">
+    <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="col-sm-2 control-label" for="name">Name</label>
             <div class="col-sm-10">
@@ -28,10 +28,18 @@
                 <br />
             </div>
         </div>
+        <p><img src="{{item.picture_url}}" /></p>
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="owner">Created by</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="owner" name="name" value="{{owner.username}}" readonly="readonly">
+            <label class="col-sm-2 control-label" for="file">Picture</label>
+            <div class="input-group">
+                <div style="position:relative;">
+                    <a class='btn btn-primary' href='javascript:;'>
+                        Change Picture...
+                        <input type="file" required="true" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file" size="40" '>
+                    </a>
+                    &nbsp;
+                    <span class='label label-info' id="file"></span>
+                </div>
             </div>
         </div>
         <br />
