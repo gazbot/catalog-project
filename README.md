@@ -33,3 +33,11 @@ JSON Response example with cURL
 XML Response example with cURL
 
 	curl -H 'Content-Type: text/xml' http://localhost:8000/categories/
+
+
+## Notes
+
+I referred to the following github repository to implement Google's OAuth
+to get user data.
+
+    https://github.com/udacity/ud330/blob/master/Lesson4/step1/project.py
