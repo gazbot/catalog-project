@@ -178,7 +178,7 @@ def editItem(item_name):
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], f_name))
                 # path of the picture to use for the template
                 picture_path = '/' + app.config['UPLOAD_FOLDER'] + f_name
-                    
+
             # set the item values from the request form
             item.name = request.form['name']
             item.description = request.form['description']
@@ -802,5 +802,5 @@ def userLogout():
 
 if __name__ == "__main__":
     app.secret_key = '0fldskt54l35k4'
-    app.debug = True
+    app.debug = False
     app.run(host='0.0.0.0', port=8000)
